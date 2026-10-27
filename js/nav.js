@@ -5,7 +5,6 @@
   var page = window.location.pathname.split('/').pop() || 'index.html';
   var items = [
     ['vision.html', 'Wizja', false],
-    ['terrain.html', 'Teren', false],
     ['inspiration.html', 'Inspiracje', false],
     ['contact.html', 'Dołącz', true]
   ];
