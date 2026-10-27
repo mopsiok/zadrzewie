@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zadrzewie — ogród społeczny w Krakowie</title>
+  <meta name="description" content="Ogród społeczny Zadrzewie w Krakowie — powstaje na zaniedbanym terenie zielonym przy udziale sąsiadów. Zobacz wizję, stan terenu i dołącz.">
+  <!-- TODO: po pierwszym wdrożeniu odkomentuj canonical/og:url i podmień og:image na docelowe -->
+  <!--
+  <link rel="canonical" href="https://mopsiok.github.io/zadrzewie/">
+  <meta property="og:url" content="https://mopsiok.github.io/zadrzewie/">
+  <meta property="og:image" content="img/og.jpg">
+  -->
+  <meta property="og:title" content="Zadrzewie — ogród społeczny w Krakowie">
+  <meta property="og:description" content="Powstaje przy udziale sąsiadów na zaniedbanym terenie zielonym. Zobacz wizję i dołącz.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="css/style.css">
+  <!-- TODO: GoatCounter — po założeniu konta podmień subdomenę. Źródła wejścia:
+       QR z plakatu → link z ?r=plakat, post na FB → ?r=facebook
+       (GoatCounter zapisuje parametr q=[query] i widać go w statystykach jest) -->
+  <script src="count.js" async data-goatcounter="https://zadrzewie.goatcounter.com/count"></script>
+</head>
+<body>
+<header data-navigation></header>
+<script src="js/nav.js"></script>
+<main>
+  <section class="hero">
+    <h1>Zatrzymać tę zieleń — i ożywić ją sąsiedzko</h1>
+    <!-- TODO: dopracuj leady. Poniższe trzymają się znanych faktów; reszta do Twojej iteracji. -->
+    <p class="lead">
+      Zadrzewie to ogród społeczny, który właśnie powstaje na zaniedbanym,
+      zielonym terenie w Krakowie. Zamiast kosić i ciąć — chcemy uporządkować
+      to miejsce tak, by służyło sąsiedztwu i roślinom jednocześnie.
+    </p>
+    <p>
+      <a class="button" href="contact.html">Chcę dołączyć</a>
+    </p>
+  </section>
+
+  <!-- TODO: wybierz docelowe zdjęcie hero. Obecnie: otwarta część terenu ze wrzesienia. -->
+  <figure>
+    <img class="hero-photo" src="img/IMG_20260921_145245.jpg"
+         alt="Otwarta, słoneczna część terenu ogrodu w wysokich trawach, w tle drzewa i domy osiedla">
+    <figcaption class="figcaption">Teren Zadrzewia — stan aktualny, wrzesień 2026.
+      <!-- TODO: ewentualnie doprecyzuj lokalizację w podpisie -->
+    </figcaption>
+  </figure>
+
+  <div class="status">
+    <p><b>Status:</b> działka potwierdzona — w toku jest podpisywanie umowy
+    z Zarządem Zieleni Miejskiej.</p>
+    <!-- TODO: aktualizuj na bieżąco; tu bardzo dobrze działa data aktualizacji -->
+  </div>
+
+  <h2>Co to będzie</h2>
+  <!-- TODO: skrót wizji 2–3 zdania; pełna opowieść w vision.html -->
+  <p>
+    Teren dzieli się na dwie części: zacienioną zadrzewioną — przeznaczoną
+    na spotkania i sąsiedzki odpoczynek — oraz słoneczną otwartą, gdzie
+    powstanie ogród uprawowy.
+  </p>
+  <p><a href="vision.html">Zobacz pełną wizję</a></p>
+
+  <h2>Jak dołączyć</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Przyjdź</h3>
+      <p>Wspólne dni prac i spotkania na terenie — bez wcześniejszego
+      doświadczenia, wystarczy chęć.</p>
+    </div>
+    <div class="card">
+      <h3>Pomóż</h3>
+      <p>Narzędzia, materiały, wiedza — wszystko się przyda w różnych etapach.</p>
+    </div>
+    <div class="card">
+      <h3>Napisz</h3>
+      <p>Najprościej: <a href="mailto:patrykjarosz01@gmail.com">patrykjarosz01@gmail.com</a> —
+      odpowiadam zwykle tego samego dnia.</p>
+    </div>
+  </div>
+  <!-- TODO: tu po podpisaniu umowy pojawią się konkretne terminy pierwszych prac -->
+  <p><a class="button" href="contact.html">Dołącz do Zadrzewia</a></p>
+
+  <h2 id="gdzie">Gdzie to powstaje</h2>
+  <!-- TODO: adres/lokalizacja + najprostszy opis dojazdu. Nie zmyślam konkretnych danych. -->
+  <p>
+    Teren w rejonie [todo: osiedle/ulica — uzupełnij po podpisaniu umowy].
+    Mapę i podział na dwie części znajdziesz na stronie
+    <a href="vision.html#mapa">Wizja</a>.
+  </p>
+</main>
+<div id="footer"></div>
+<script src="js/footer.js"></script>
+</body>
+</html>
