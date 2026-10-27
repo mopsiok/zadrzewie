@@ -8,6 +8,14 @@
   var buttons = Array.prototype.slice.call(document.querySelectorAll('.gallery-photo'));
   var currentIndex = 0;
 
+  // hide the page scrollbar behind the modal for as long as it is open
+  function lockScroll() {
+    document.documentElement.style.overflow = 'hidden';
+  }
+  function unlockScroll() {
+    document.documentElement.style.overflow = '';
+  }
+
   function showImage(index) {
     currentIndex = (index + buttons.length) % buttons.length;
     var image = buttons[currentIndex].querySelector('img');
@@ -19,9 +27,12 @@
   buttons.forEach(function (button, index) {
     button.addEventListener('click', function () {
       showImage(index);
+      lockScroll();
       dialog.showModal();
     });
   });
+
+  dialog.addEventListener('close', unlockScroll);
 
   dialog.querySelector('.prev-photo').addEventListener('click', function () {
     showImage(currentIndex - 1);

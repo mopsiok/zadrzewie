@@ -147,6 +147,19 @@ nav a.join:focus-visible {
   color: var(--text-muted);
 }
 
+/* ============ Inspirations (stacked: heading -> photo -> description) ============ */
+.inspiration-item {
+  margin: 2.3rem 0;
+}
+.inspiration-item h3 {
+  font-size: 1.25rem;
+  margin-bottom: .6rem;
+}
+.inspiration-item .hero-photo {
+  margin: 0 0 .5rem;
+}
+.inspiration-item p { margin-bottom: 0; }
+
 /* ============ Status highlight ============ */
 .status {
   background: var(--accent-light);
@@ -181,10 +194,13 @@ main li { margin: .45rem 0; }
 /* ============ Galleries + lightbox ============ */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1rem;
   margin: 1.4rem 0;
 }
+/* every group gets an explicit number of columns, so all thumbnails in
+   the group sit in one row and share the same tile size */
+.gallery-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.gallery-cols-4 { grid-template-columns: repeat(4, 1fr); }
 .gallery-photo {
   appearance: none;
   background: none;
@@ -195,7 +211,8 @@ main li { margin: .45rem 0; }
 .gallery-photo img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -205,55 +222,90 @@ main li { margin: .45rem 0; }
   outline-offset: 3px;
 }
 
+/* Lightbox as an immersive stage: the photo fills the dialog,
+   controls are overlaid on top of the image (no beige panel). */
 .lightbox {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  max-width: min(1500px, calc(100% - 2rem));
-  padding: 1rem;
-}
-.lightbox::backdrop { background: rgba(46, 42, 36, .75); }
-.lightbox .close-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: .3rem;
-}
-.close-lightbox {
-  background: none;
   border: 0;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 2rem;
-  line-height: 1;
+  padding: 0;
+  background: none;
+  overflow: hidden;
+  max-width: min(1500px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+}
+.lightbox::backdrop { background: rgba(20, 19, 17, .82); }
+.lightbox form {
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  margin: 0;
+}
+.lightbox figure {
+  margin: 0;
+  position: relative;
 }
 .lightbox img {
   display: block;
-  max-height: 75vh;
   max-width: 100%;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
   width: auto;
-  margin: 0 auto;
+  height: auto;
+  border-radius: 8px;
 }
-.lightbox figcaption {
-  color: var(--text-muted);
-  font-size: .9rem;
-  margin-top: .5rem;
+.close-lightbox,
+.lightbox-nav button {
+  background: rgba(31, 30, 27, .6);
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
 }
+.close-lightbox {
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.close-lightbox:hover,
+.lightbox-nav button:hover { background: rgba(31, 30, 27, .85); }
+.close-lightbox:focus-visible,
+.lightbox-nav button:focus-visible,
+.lightbox-caption:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+/* bottom overlay strip: [Poprzednie] [caption] [Nastepne]; the caption
+   wraps and the strip grows (radius 14px on a possibly multi-row bar) */
 .lightbox-nav {
+  position: absolute;
+  left: .5rem;
+  right: .5rem;
+  bottom: .5rem;
   display: flex;
-  gap: .75rem;
-  justify-content: space-between;
-  margin-top: 1rem;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(31, 30, 27, .6);
+  border: 1px solid rgba(255, 255, 255, .4);
+  border-radius: 14px;
+  padding: .4rem .55rem;
 }
 .lightbox-nav button {
-  background: var(--accent-light);
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  color: var(--text);
-  cursor: pointer;
   font: inherit;
-  padding: .35rem .65rem;
+  font-size: .9rem;
+  padding: .35rem .8rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.lightbox-nav button:hover { background: var(--bg-shaded); }
+.lightbox-caption {
+  flex: 1;
+  min-width: 0;
+  color: #fff;
+  font-size: .9rem;
+  text-align: center;
+  line-height: 1.45;
+  padding: .1rem .3rem;
+}
 
 /* ============ Contact table ============ */
 .contact-table {
@@ -313,15 +365,32 @@ main li { margin: .45rem 0; }
     align-items: flex-start;
     padding: .75rem 1rem;
   }
-  nav a { padding: .35rem .5rem; }
+  .brand { font-size: 1.3rem; }
+  .brand-tagline { font-size: .8rem; }
+  nav a { padding: .45rem .55rem; }
+
+  /* wider, tappable tiles: two per row */
+  .gallery-cols-3,
+  .gallery-cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .gallery { gap: .7rem; }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .3rem;
+  }
 }
 
 @media (max-height: 500px) and (orientation: landscape) {
   .lightbox {
+    max-width: calc(100vw - 1rem);
+    max-height: calc(100vh - 1rem);
     max-height: calc(100dvh - 1rem);
-    max-width: calc(100% - 1rem);
-    padding: .5rem;
   }
-  .lightbox img { max-height: 55dvh; }
-  .lightbox-nav { margin-top: .5rem; }
+  .lightbox img {
+    max-height: calc(100vh - 1rem);
+    max-height: calc(100dvh - 1rem);
+  }
+  .lightbox-nav { left: .4rem; right: .4rem; bottom: .4rem; }
+  .lightbox form { top: .4rem; right: .4rem; }
 }
